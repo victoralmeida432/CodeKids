@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Code Kids</title>
+        <style>
+            canvas{
+                position: absolute;
+                top: 0px;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            //variavéis do jogo
+            var canvas,context,LARGURA,ALTURA,frames = 0;
+
+            //Modificar o chão aqui com as cores, etc.
+            ground = {
+                 y:550,
+                 altura: 50,
+                 cor: "#ffdf70",
+
+                 desenha: function(){
+                     context.fillStyle = this.cor;
+                     context.fillRect(0,this.y, LARGURA, ALTURA);
+                 }
+            },
+
+            personagem = {
+                x: 50,
+                y: 0,
+                altura: 50,
+                largura: 50,
+                cor: "#ffe4e",
+
+                desenha: function(){
+                    context.fillStyle = this.cor;
+                    context.fillRect(this.x,this.y, this.altura, this.largura);
+                }
+            };
+
+            function clicking(event){
+                alert("Clicou!");
+            }
+
+            function main(){
+                ALTURA = window.innerHeight;
+                LARGURA = window.innerWidth;
+
+                //Mudar tamanho da janela aqui :)
+
+                if(LARGURA >= 500){
+                    LARGURA = 600;
+                    ALTURA = 600;
+                }
+
+                canvas = document.createElement("canvas");
+                canvas.width = LARGURA;
+                canvas.height = ALTURA;
+                //Borda da janela, pegar as cores com os DS
+                canvas.style.border ="1px solid #000"
+
+                context = canvas.getContext("2d");
+                document.body.appendChild(canvas);
+                
+                //Criei apenas um event Listener para poder testar a tela e a função de click do usuário
+                document.addEventListener("mousedown", clicking);
+
+                running_on();
+            }
+
+            function running_on(){
+                refreshing();
+                drawing();
+
+                window.requestAnimationFrame(running_on);
+            }
+
+            function refreshing(){
+                frames++;
+            }
+
+            function drawing() {
+                context.fillStyle = "#50beff";
+                context.fillRect(0, 0, LARGURA, ALTURA);
+
+                ground.desenha();
+                personagem.desenha();
+            }
+
+            //inicializando nosso jogo
+
+            main();
+
+
+        </script>
+    </body>
+</html>
