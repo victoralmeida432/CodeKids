@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Code Kids</title>
+        <script src="Sprite.js"></script>
         <style>
             canvas{
                 position: absolute;
@@ -19,6 +20,7 @@
             //variavéis do jogo
             var canvas,context,LARGURA,ALTURA,frames = 0;
             var maxPulos = 1;
+            var img;
 
             //Modificar o chão aqui com as cores, etc.
             ground = {
@@ -35,8 +37,8 @@
             personagem = {
                 x: 50,
                 y: 0,
-                altura: 50,
-                largura: 50,
+                altura: this.altura,
+                largura: this.largura,
                 cor: "#ffe4e",
                 gravidade: 1.5,
                 velocidade: 0,
@@ -61,8 +63,9 @@
                 },
 
                 desenha: function(){
-                    context.fillStyle = this.cor;
-                    context.fillRect(this.x,this.y, this.altura, this.largura);
+                    //context.fillStyle = this.cor;
+                    //context.fillRect(this.x,this.y, this.altura, this.largura);
+                    spritePersonagem.desenha(this.x, this.y,);
                 }
             };
 
@@ -92,6 +95,10 @@
                 
                 //Criei apenas um event Listener para poder testar a tela e a função de click do usuário
                 document.addEventListener("mousedown", clicking);
+                
+                img = new Image();
+                //adicionar o caminho pra imagem de background
+                img.src = "imagens/ZUMBINO.png";
 
                 running_on();
             }
@@ -111,6 +118,9 @@
             function drawing() {
                 context.fillStyle = "#50beff";
                 context.fillRect(0, 0, LARGURA, ALTURA);
+
+                //bg.desenha(0, 0);
+                //spritBoneco.desenha(50,50)
 
                 ground.desenha();
                 personagem.desenha();
