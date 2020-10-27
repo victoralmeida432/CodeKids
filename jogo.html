@@ -18,6 +18,7 @@
         <script>
             //variavéis do jogo
             var canvas,context,LARGURA,ALTURA,frames = 0;
+            var maxPulos = 1;
 
             //Modificar o chão aqui com as cores, etc.
             ground = {
@@ -37,6 +38,27 @@
                 altura: 50,
                 largura: 50,
                 cor: "#ffe4e",
+                gravidade: 1.5,
+                velocidade: 0,
+                ForcaDoPulo: 15,
+                qntPulos: 0,
+                
+                atualiza: function(){
+                    this.velocidade += this.gravidade;
+                    this.y += this.velocidade;
+
+                    if (this.y > ground.y - this.altura){
+                        this.y = ground.y - this.altura;
+                        this.qntPulos = 0;
+                    }
+                },
+
+                pula: function(){
+                    if(this.qntPulos < maxPulos){
+                        this.velocidade = -this.ForcaDoPulo;
+                        this.qntPulos++;
+                    }
+                },
 
                 desenha: function(){
                     context.fillStyle = this.cor;
@@ -45,7 +67,7 @@
             };
 
             function clicking(event){
-                alert("Clicou!");
+                personagem.pula();
             }
 
             function main(){
@@ -83,6 +105,7 @@
 
             function refreshing(){
                 frames++;
+                personagem.atualiza();
             }
 
             function drawing() {
