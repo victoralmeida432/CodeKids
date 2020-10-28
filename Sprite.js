@@ -10,5 +10,5 @@ function Sprite(x, y, largura, altura){
 
 }
 
-var bg = new Sprite(0, 0, 0, 0);
-var spritePersonagem = new Sprite(0,0,50,70);
+var bg = new Sprite(0, 0, 600, 600);
+var spritePersonagem = new Sprite(0,0,50,71);
