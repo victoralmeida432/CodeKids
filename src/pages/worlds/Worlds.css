@@ -1,0 +1,21 @@
+.levelCard {
+    background: #24D380;
+    border: 5px solid #E1E1E1;
+    box-sizing: border-box;
+    border-radius: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 56px;
+}
+
+.levelCard > p {
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    color: #000000;
+    margin: 0;
+    text-decoration: none;
+}
+

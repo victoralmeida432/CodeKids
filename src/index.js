@@ -4,34 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import Phaser from "phaser";
-import Scene from "./components/Game/Scene";
 
-const config = {
-    type: Phaser.AUTO,
-    scale: {
-        mode: Phaser.Scale.FIT,
-        parent: "game",
-        autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
-        width: 800,
-        height: 800
-    },
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 300 },
-            debug: false
-        }
-    },
-    scene: Scene
-};
-
-const game = new Phaser.Game(config)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 );
 

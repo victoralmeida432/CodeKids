@@ -1,82 +1,41 @@
 import React from "react";
 
 import './App.css';
-import Grid from "@material-ui/core/Grid";
 
-import playIcon from "./assets/play_icon.svg"
+import 'fontsource-roboto';
 
-import {Container} from "@material-ui/core";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from "react-router-dom";
 
-import ACTIONS from './constants/actions'
+import Home from "./pages/home/Home";
+import Worlds from "./pages/worlds/Worlds";
+import Game from "./pages/game/Game";
 
 class App extends React.Component{
-    constructor(props) {
-        super(props);
-        this.props = props
-        this.state = {
-            queue: []
-        }
-
-        this.addAction = this.addAction.bind(this)
-    }
-
-    addAction(action) {
-        this.setState({queue: [...this.state.queue, action]})
-    }
-
-    render() {
-        const {queue} = this.state
-
-        return (
-            <div className="App background">
-                {this.props.children}
-                <Grid container spacing={0}>
-                    <Grid item xs={10}>
-                        <Card>
-                            <div style={{overflow: "scroll"}} className="menu justify-left">
-                                {
-                                    queue.map(step => (
-                                        <img className="action-card menu" src={step.icon} />
-                                    ))
-                                }
-                            </div>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <Card>
-                            <div className="menu justify-center">
-                                <img src={playIcon}/>
-                            </div>
-                        </Card>
-                    </Grid>
-                    <Container>
-                        <Grid container spacing={2} alignItems="center">
-                            {
-                                ACTIONS.map(action => (
-                                    <Grid item xs={3} >
-                                        <img
-                                            onClick={() => this.addAction(action)}
-                                            className="action-card selector"
-                                            src={action.icon} />
-                                    </Grid>
-                                ))
-                            }
-                        </Grid>
-                    </Container>
-                </Grid>
-            </div>
-        );
-    }
-}
-
-const Card = (props) => {
+  render() {
     return (
-        <div className="card">
-            {
-                props.children
-            }
+      <div className="primary">
+        <div className="container">
+          <Router>
+            <Switch>
+              <Route path="/worlds/01/game">
+                <Game game={this.props.game} scene={this.props.scene}/>
+              </Route>
+              <Route path="/worlds">
+                <Worlds/>
+              </Route>
+              <Route path="/">
+                <Home/>
+              </Route>
+            </Switch>
+          </Router>
         </div>
-    )
+      </div>
+    );
+  }
 }
 
 export default App;
